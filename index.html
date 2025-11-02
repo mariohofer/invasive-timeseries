@@ -51,51 +51,7 @@
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
 
-		// --- Time Dimension with Start & End Dates ---
-		map.timeDimension = new L.TimeDimension({
-		    timeInterval: "1995-01-01/2025-09-01",  // adjust to your dataset range
-		    period: "P1M"  // steps: P1D=day, P1M=month, P1Y=year
-		});
 		
-		var player = new L.TimeDimension.Player({
-		    transitionTime: 1000,
-		    loop: true,
-		    startOver: true
-		}, map.timeDimension);
-		
-		var timeDimensionControl = new L.Control.TimeDimension({
-		    player: player,
-		    timeDimension: map.timeDimension,
-		    position: 'bottomleft',
-		    autoPlay: false,
-		    minSpeed: 0.5,
-		    speedStep: 0.5,
-		    maxSpeed: 5,
-		    timeSliderDragUpdate: true
-		});
-		map.addControl(timeDimensionControl);
-		
-		// --- Wrap layer with TimeDimension, using start & end fields ---
-		var geojsonTimeLayer = L.timeDimension.layer.geoJson(layer_MyLayer, {
-		    updateTimeDimension: true,
-		    addlastPoint: false,
-		    duration: null,  // feature stays visible until its end date
-		    updateTimeDimensionMode: 'replace',
-		    // Tell plugin which fields to use for time interval:
-		    getInterval: function(feature) {
-		        if (feature.properties.start_date && feature.properties.INAKTIV_DA) {
-		            return [
-		                new Date(feature.properties.BEOBACHTUN),
-		                new Date(feature.properties.end_date)
-		            ];
-		        } else if (feature.properties.INAKTIV_DA) {
-		            var start = new Date(feature.properties.BEOBACHTUN);
-		            return [start, start];
-		        }
-		        return null;
-		    }
-		});
-
 map.addLayer(geojsonTimeLayer);
 
         // remove popup's row if "visible-with-data"
@@ -325,6 +281,53 @@ map.addLayer(geojsonTimeLayer);
         });
         bounds_group.addLayer(layer_Ambrosia_points_2);
         map.addLayer(layer_Ambrosia_points_2);
+
+
+		// --- Time Dimension with Start & End Dates ---
+		map.timeDimension = new L.TimeDimension({
+		    timeInterval: "1995-01-01/2025-09-01",  // adjust to your dataset range
+		    period: "P1M"  // steps: P1D=day, P1M=month, P1Y=year
+		});
+		
+		var player = new L.TimeDimension.Player({
+		    transitionTime: 1000,
+		    loop: true,
+		    startOver: true
+		}, map.timeDimension);
+		
+		var timeDimensionControl = new L.Control.TimeDimension({
+		    player: player,
+		    timeDimension: map.timeDimension,
+		    position: 'bottomleft',
+		    autoPlay: false,
+		    minSpeed: 0.5,
+		    speedStep: 0.5,
+		    maxSpeed: 5,
+		    timeSliderDragUpdate: true
+		});
+		map.addControl(timeDimensionControl);
+		
+		// --- Wrap layer with TimeDimension, using start & end fields ---
+		var geojsonTimeLayer = L.timeDimension.layer.geoJson(layer_Ambrosia_points_2, {
+		    updateTimeDimension: true,
+		    addlastPoint: false,
+		    duration: null,  // feature stays visible until its end date
+		    updateTimeDimensionMode: 'replace',
+		    // Tell plugin which fields to use for time interval:
+		    getInterval: function(feature) {
+		        if (feature.properties.start_date && feature.properties.INAKTIV_DA) {
+		            return [
+		                new Date(feature.properties.BEOBACHTUN),
+		                new Date(feature.properties.end_date)
+		            ];
+		        } else if (feature.properties.INAKTIV_DA) {
+		            var start = new Date(feature.properties.BEOBACHTUN);
+		            return [start, start];
+		        }
+		        return null;
+		    }
+		});
+
         function pop_Barenklau_points_3(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
