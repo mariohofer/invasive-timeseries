@@ -94,7 +94,7 @@
         // Time control variables
         let currentTimeIndex = 100;
         let timeSteps = [];
-        let isPlaying = true;
+        let isPlaying = false;
         let playInterval;
 
         // Store original layers for reference
@@ -268,7 +268,7 @@
                     } else {
                         togglePlay(); // Stop at end
                     }
-                }, 1000); // 1 second interval
+                }, 250); // 1time intervall millisec
             }
         }
 
@@ -311,6 +311,8 @@
                 document.getElementById('playPause').addEventListener('mousedown', preventMapDrag);
                 document.getElementById('reset').addEventListener('mousedown', preventMapDrag);
                 
+                togglePlay();
+
                 console.log('Time control initialized successfully');
             } else {
                 document.getElementById('timeControl').innerHTML += '<div style="color: red; font-size: 12px;">No date data found - showing all points</div>';
