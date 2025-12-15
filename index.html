@@ -63,21 +63,34 @@
         }
       	.size-legend {
 		    background: white;
-		    padding: 10px 12px;
-		    border-radius: 5px;
+		    padding: 14px 16px;
+		    border-radius: 6px;
 		    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-		    font-size: 12px;
-		    line-height: 1.2;
+		    font-size: 13px;
+		    line-height: 1.4;
+		
+		    /* middle-left positioning tweak */
+		    margin-top: 35vh;
 		}
 		
 		.size-legend h4 {
-		    margin: 0 0 6px 0;
-		    font-size: 13px;
+		    margin: 0 0 10px 0;
+		    font-size: 14px;
+		}
+		
+		.size-legend strong {
+		    display: block;
+		    margin: 12px 0 6px 0;
 		}
 		
 		.size-legend svg {
 		    display: block;
-		}	
+		    margin-bottom: 14px; /* space between legend blocks */
+		}
+		
+		.size-legend text {
+		    dominant-baseline: middle;
+		}
 		</style>
         <title></title>
     </head>
@@ -446,37 +459,39 @@
 		        <h4>Individuals</h4>
 		
 		        <strong>Ambrosia</strong>
-		        <svg width="140" height="90">
-		            <circle cx="20" cy="70" r="4" fill="rgba(204,230,106,1)" stroke="#333"/>
-		            <text x="45" y="74">0 – 100</text>
-		
-		            <circle cx="20" cy="50" r="8" fill="rgba(204,230,106,1)" stroke="#333"/>
-		            <text x="45" y="54">100 – 200</text>
-		
-		            <circle cx="20" cy="30" r="12" fill="rgba(204,230,106,1)" stroke="#333"/>
-		            <text x="45" y="34">200 – 300</text>
-		
-		            <circle cx="20" cy="10" r="16" fill="rgba(204,230,106,1)" stroke="#333"/>
-		            <text x="45" y="14">300 – 400</text>
-		        </svg>
+		        <svg width="160" height="120">
+				    <circle cx="20" cy="95" r="4" fill="rgba(204,230,106,1)" stroke="#333"/>
+				    <text x="55" y="95">0 – 100</text>
+				
+				    <circle cx="20" cy="70" r="8" fill="rgba(204,230,106,1)" stroke="#333"/>
+				    <text x="55" y="70">100 – 200</text>
+				
+				    <circle cx="20" cy="45" r="12" fill="rgba(204,230,106,1)" stroke="#333"/>
+				    <text x="55" y="45">200 – 300</text>
+				
+				    <circle cx="20" cy="20" r="16" fill="rgba(204,230,106,1)" stroke="#333"/>
+				    <text x="55" y="20">300 – 400</text>
+				</svg>
+
 		
 		        <strong>Barenklau</strong>
-		        <svg width="140" height="95">
-		            <circle cx="20" cy="75" r="4" fill="rgba(114,155,111,1)" stroke="#333"/>
-		            <text x="45" y="79">0</text>
-		
-		            <circle cx="20" cy="60" r="7" fill="rgba(114,155,111,1)" stroke="#333"/>
-		            <text x="45" y="64">1 – 20</text>
-		
-		            <circle cx="20" cy="45" r="10" fill="rgba(114,155,111,1)" stroke="#333"/>
-		            <text x="45" y="49">20 – 40</text>
-		
-		            <circle cx="20" cy="25" r="13" fill="rgba(114,155,111,1)" stroke="#333"/>
-		            <text x="45" y="29">40 – 60</text>
-		
-		            <circle cx="20" cy="5" r="16" fill="rgba(114,155,111,1)" stroke="#333"/>
-		            <text x="45" y="9">60 – 75</text>
-		        </svg>
+		        <svg width="160" height="140">
+				    <circle cx="20" cy="115" r="4" fill="rgba(114,155,111,1)" stroke="#333"/>
+				    <text x="55" y="115">0</text>
+				
+				    <circle cx="20" cy="90" r="7" fill="rgba(114,155,111,1)" stroke="#333"/>
+				    <text x="55" y="90">1 – 20</text>
+				
+				    <circle cx="20" cy="65" r="10" fill="rgba(114,155,111,1)" stroke="#333"/>
+				    <text x="55" y="65">20 – 40</text>
+				
+				    <circle cx="20" cy="40" r="13" fill="rgba(114,155,111,1)" stroke="#333"/>
+				    <text x="55" y="40">40 – 60</text>
+				
+				    <circle cx="20" cy="15" r="16" fill="rgba(114,155,111,1)" stroke="#333"/>
+				    <text x="55" y="15">60 – 75</text>
+				</svg>
+
 		    `;
 		
 		    return div;
