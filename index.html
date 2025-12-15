@@ -61,7 +61,24 @@
         .time-btn:hover {
             background: #005580;
         }
-        </style>
+      	.size-legend {
+		    background: white;
+		    padding: 10px 12px;
+		    border-radius: 5px;
+		    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+		    font-size: 12px;
+		    line-height: 1.2;
+		}
+		
+		.size-legend h4 {
+		    margin: 0 0 6px 0;
+		    font-size: 13px;
+		}
+		
+		.size-legend svg {
+		    display: block;
+		}	
+		</style>
         <title></title>
     </head>
     <body>
@@ -416,6 +433,59 @@
             position: 'topleft'
         }).addTo(map);
         var bounds_group = new L.featureGroup([]);
+
+		// =====================
+		// Proportional size legend
+		// =====================
+		var sizeLegend = L.control({ position: 'bottomright' });
+		
+		sizeLegend.onAdd = function () {
+		    var div = L.DomUtil.create('div', 'size-legend');
+		
+		    div.innerHTML = `
+		        <h4>Individuals</h4>
+		
+		        <strong>Ambrosia</strong>
+		        <svg width="140" height="90">
+		            <circle cx="20" cy="70" r="4" fill="rgba(204,230,106,1)" stroke="#333"/>
+		            <text x="45" y="74">0 – 100</text>
+		
+		            <circle cx="20" cy="50" r="8" fill="rgba(204,230,106,1)" stroke="#333"/>
+		            <text x="45" y="54">100 – 200</text>
+		
+		            <circle cx="20" cy="30" r="12" fill="rgba(204,230,106,1)" stroke="#333"/>
+		            <text x="45" y="34">200 – 300</text>
+		
+		            <circle cx="20" cy="10" r="16" fill="rgba(204,230,106,1)" stroke="#333"/>
+		            <text x="45" y="14">300 – 400</text>
+		        </svg>
+		
+		        <strong>Barenklau</strong>
+		        <svg width="140" height="95">
+		            <circle cx="20" cy="75" r="4" fill="rgba(114,155,111,1)" stroke="#333"/>
+		            <text x="45" y="79">0</text>
+		
+		            <circle cx="20" cy="60" r="7" fill="rgba(114,155,111,1)" stroke="#333"/>
+		            <text x="45" y="64">1 – 20</text>
+		
+		            <circle cx="20" cy="45" r="10" fill="rgba(114,155,111,1)" stroke="#333"/>
+		            <text x="45" y="49">20 – 40</text>
+		
+		            <circle cx="20" cy="25" r="13" fill="rgba(114,155,111,1)" stroke="#333"/>
+		            <text x="45" y="29">40 – 60</text>
+		
+		            <circle cx="20" cy="5" r="16" fill="rgba(114,155,111,1)" stroke="#333"/>
+		            <text x="45" y="9">60 – 75</text>
+		        </svg>
+		    `;
+		
+		    return div;
+		};
+		
+		sizeLegend.addTo(map);
+		L.DomEvent.disableClickPropagation(document.querySelector('.size-legend'));
+		L.DomEvent.disableScrollPropagation(document.querySelector('.size-legend'));
+		
         function setBounds() {
         }
 
@@ -695,6 +765,9 @@
         
         // Initialize time control after everything is loaded
         setTimeout(initTimeControl, 500);
+
+
+		
         </script>        
     </body>
 </html>
